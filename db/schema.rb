@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126011545) do
+ActiveRecord::Schema.define(version: 20150127042627) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name",       null: false
@@ -39,15 +39,30 @@ ActiveRecord::Schema.define(version: 20150126011545) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.decimal  "current_scoring", default: 0.0, null: false
+    t.decimal  "highest_scoring", default: 0.0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
   create_table "songs", force: :cascade do |t|
-    t.string   "name",                     null: false
+    t.string   "name",       null: false
     t.integer  "artist_id"
     t.integer  "album_id"
-    t.string   "sc_url",                   null: false
-    t.decimal  "index",      default: 0.0, null: false
+    t.string   "sc_url",     null: false
     t.integer  "genre_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "rank_weight"
+    t.integer  "alexa_rank"
+    t.string   "url",         null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
